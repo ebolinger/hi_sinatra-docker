@@ -27,6 +27,8 @@ Vagrant::Config.run do |config|
   # Setup virtual machine box. This VM configuration code is always executed.
   config.vm.box = BOX_NAME
   config.vm.box_url = BOX_URI
+  config.vm.forward_port 8080, 8080
+  config.vm.forward_port 8000, 8000
   provisioning_script = ["export DEBIAN_FRONTEND=noninteractive"]
 
   provision_docker = [

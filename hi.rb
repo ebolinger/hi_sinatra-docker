@@ -8,6 +8,6 @@ before do
 end
 
 get '/' do
-  "Hi, I am a Sinatra app running inside a docker container. " <<
+  "Hi, I am a test Sinatra app running inside a docker container. " <<
   "I have been requested #{@hits} times."
 end
