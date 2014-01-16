@@ -14,7 +14,7 @@ describe 'Hi' do
 
     it "greets us" do
       expect(last_response.body).to include(
-        'I am a Sinatra app running inside a docker container'
+        'I am a test Sinatra app running inside a docker container'
       )
     end
 
