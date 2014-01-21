@@ -27,6 +27,7 @@ Vagrant::Config.run do |config|
   # Setup virtual machine box. This VM configuration code is always executed.
   config.vm.box = BOX_NAME
   config.vm.box_url = BOX_URI
+  config.vm.forward_port 8888, 8888
   config.vm.forward_port 8080, 8080
   config.vm.forward_port 8000, 8000
   provisioning_script = ["export DEBIAN_FRONTEND=noninteractive"]
@@ -67,14 +68,11 @@ Vagrant::Config.run do |config|
     "wget -q -O - http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war > /home/jenkins/jenkins.war",
     %{cat << EOF > /etc/init/jenkins.conf
 description "Jenkins Server"
-
 start on filesystem
 stop on runlevel [!2345]
-
 respawn limit 10 5
-
 script
-  sudo -Hu jenkins java -jar /home/jenkins/jenkins.war -Djava.awt.headless=true --httpPort=8080
+  sudo -Hu jenkins java -jar /home/jenkins/jenkins.war -Djava.awt.headless=true --httpPort=8888
 end script
 EOF},
     "start jenkins",
